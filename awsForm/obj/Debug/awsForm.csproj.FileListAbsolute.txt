@@ -1,0 +1,16 @@
+D:\awsForm\awsForm\bin\Debug\awsForm.exe.config
+D:\awsForm\awsForm\bin\Debug\awsForm.exe
+D:\awsForm\awsForm\bin\Debug\awsForm.pdb
+D:\awsForm\awsForm\bin\Debug\M2Mqtt.Net.dll
+D:\awsForm\awsForm\bin\Debug\Newtonsoft.Json.dll
+D:\awsForm\awsForm\bin\Debug\M2Mqtt.Net.pdb
+D:\awsForm\awsForm\bin\Debug\Newtonsoft.Json.xml
+D:\awsForm\awsForm\obj\Debug\awsForm.csproj.AssemblyReference.cache
+D:\awsForm\awsForm\obj\Debug\awsForm.csproj.SuggestedBindingRedirects.cache
+D:\awsForm\awsForm\obj\Debug\awsForm.Form1.resources
+D:\awsForm\awsForm\obj\Debug\awsForm.Properties.Resources.resources
+D:\awsForm\awsForm\obj\Debug\awsForm.csproj.GenerateResource.cache
+D:\awsForm\awsForm\obj\Debug\awsForm.csproj.CoreCompileInputs.cache
+D:\awsForm\awsForm\obj\Debug\awsForm.csproj.CopyComplete
+D:\awsForm\awsForm\obj\Debug\awsForm.exe
+D:\awsForm\awsForm\obj\Debug\awsForm.pdb
