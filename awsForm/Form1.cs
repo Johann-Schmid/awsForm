@@ -29,6 +29,7 @@ namespace awsForm
         {
             Debug.WriteLine("HelloWorld");
             InitializeComponent();
+            this.Text = "AWS cloud IoT mqtt example project C# by biosoft-R";
             awsStream = new aws(this);
             mySetTextAWS = new setTextAWS(setText);
         }
@@ -50,5 +51,14 @@ namespace awsForm
             set => textBox1.Text = value;
         }
 
+        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
+        {
+            awsStream.closeConnection();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.biosoft-r.de");
+        }
     }
 }
