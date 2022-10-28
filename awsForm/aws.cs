@@ -20,16 +20,15 @@ namespace awsForm
     {
         MqttClient client = null;
         Form1 awsForm;
-        public delegate void ShowData(string message);
-
 
         public aws(Form1 form)
         {
             awsForm = form;
+
+            //var broker = "avdz0tx0oxt1t-ats.iot.us-west-2.amazonaws.com";
             var broker = "avdz0tx0oxt1t-ats.iot.eu-central-1.amazonaws.com"; //<AWS-IoT-Endpoint>           
             var port = 8883; //port of AWS cloud
-            var certPass = "<type here your pfx-certificate password";
-            //var clientId = "awsLabjack";
+            var certPass = "12345";
 
             //certificates Path
 
@@ -39,11 +38,8 @@ namespace awsForm
 
             var caCert = X509Certificate.CreateFromCertFile(caCertPath);
 
-            var deviceCertPath = Path.Combine(certificatesPath, "certificateAWS.cert.pfx");
-            var deviceCert = new X509Certificate2(deviceCertPath, certPass);
-
-            //var clientCert = new X509Certificate2(@"D:\awsForm\awsForm\bin\Debug\certs\certificate.cert.pfx", certPass);
-            //var caCert = X509Certificate.CreateFromSignedFile(@"D:\awsForm\awsForm\bin\Debug\certs\AmazonRootCA1.pem");
+            var deviceCertPath = Path.Combine(certificatesPath, "certificate.cert.pfx"); //create a pfx certificate with openSSL and put it in awsForm/bin/Debug/certs
+            var deviceCert = new X509Certificate2(deviceCertPath, certPass); //use X509Certificate2 instead of X509Certificate
 
             // Create a new MQTT client.
             try
@@ -78,22 +74,9 @@ namespace awsForm
         private void dataReceived(string message)
         {
             Debug.WriteLine(message);
-            //awsForm.awsSubscripe = message;
             awsForm.awsSubscripe = message;
         }
 
-        public void connect(string clientID)
-        {
-            try
-            {
-                client.Connect(clientID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Connect MQTT");
-            }
-            client.Connect(clientID);
-        }
 
         public void sendMessage(string strVale)
         {
@@ -101,7 +84,10 @@ namespace awsForm
             {
                 try
                 {
+                    Debug.WriteLine("Sleep");
+                    //System.Threading.Thread.Sleep(2000);
                     client.Publish("labjackValues", Encoding.UTF8.GetBytes(strVale));
+                    Debug.WriteLine("Send message");
                 }
                 catch (Exception ex)
                 {
@@ -109,7 +95,9 @@ namespace awsForm
                 }
                 
             });
-            t3.Wait();
+            
+            //t3.Wait();
+
         }
 
         private static void Client_MqttMsgSubscribed(object sender, MqttMsgSubscribedEventArgs e)
@@ -120,8 +108,6 @@ namespace awsForm
         {
             Debug.WriteLine("Message received: " + Encoding.UTF8.GetString(e.Message));
             awsForm.Invoke(awsForm.mySetTextAWS, new object[] { Encoding.UTF8.GetString(e.Message) });
-            //ShowData handler = new ShowData(dataReceived);
-            //handler(Encoding.UTF8.GetString(e.Message));
         }
 
         public void closeConnection()
